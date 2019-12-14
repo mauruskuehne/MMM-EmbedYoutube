@@ -8,6 +8,7 @@
  * MIT Licensed.
  */
 Module.register("MMM-EmbedYoutube", {
+	playlist: "",
 	defaults: {
 		autoplay: false,
 		color: "red",
@@ -23,6 +24,17 @@ Module.register("MMM-EmbedYoutube", {
 		video_id : "",
 		playlist: "",
 		video_list: []
+	},
+	notificationReceived: function(notification, payload, sender) {
+		var that = this;
+		Log.info("video request from ", sender, payload);
+		if (notification === "SHOW_PLAYLIST") {
+			if(that.defaults.playlist != payload) {
+				that.playlist = "PLt_9GOsm6w8QTohMPzT6ucrvJ0h2HWF7f";
+				//debugger;
+				that.updateDom();
+			}
+		}
 	},
 	getDom: function () {
 		var wrapper = document.createElement("div");
@@ -52,9 +64,9 @@ Module.register("MMM-EmbedYoutube", {
 
 		var videoId = this.config.video_id +"?version=3";
 		if (typeof this.config.playlist !== "undefined" && this.config.playlist != "")
-			videoId = "playlist?list=" + this.config.playlist + "&";
+			videoId = "playlist?list=" + this.playlist + "&";
 
-		wrapper.innerHTML = "<iframe width=\"" + this.config.width +"\" height=\"" + this.config.height + "\" src=\"https://www.youtube.com/embed/" + videoId + "&"+ params +"\" frameborder=\"0\" allowfullscreen></iframe>";
+		wrapper.innerHTML = "<iframe width=\"" + this.config.width +"\" height=\"" + this.config.height + "\" src=\"https://www.youtube.com/embed/videoseries?list=" + this.playlist + "&autoplay=1\" frameborder=\"0\" allowfullscreen></iframe>";
 		return wrapper;
 	}
 });
