@@ -66,7 +66,7 @@ Module.register("MMM-EmbedYoutube", {
 		if (typeof this.config.playlist !== "undefined" && this.config.playlist != "")
 			videoId = "playlist?list=" + this.playlist + "&";
 
-		wrapper.innerHTML = "<iframe width=\"" + this.config.width +"\" height=\"" + this.config.height + "\" src=\"https://www.youtube.com/embed/videoseries?list=" + this.playlist + "&autoplay=1\" frameborder=\"0\" allowfullscreen></iframe>";
+		wrapper.innerHTML = "<iframe width=\"" + this.config.width +"\" height=\"" + this.config.height + "\" src=\"https://www.youtube.com/embed/videoseries?list=" + this.playlist + "&autoplay=1&mute=1\" frameborder=\"0\" allowfullscreen></iframe>";
 		return wrapper;
 	}
 });
