@@ -30,7 +30,7 @@ Module.register("MMM-EmbedYoutube", {
 		Log.info("video request from ", sender, payload);
 		if (notification === "SHOW_PLAYLIST") {
 			if(that.defaults.playlist != payload) {
-				that.playlist = "PLt_9GOsm6w8QTohMPzT6ucrvJ0h2HWF7f";
+				that.playlist = payload;
 				//debugger;
 				that.updateDom();
 			}
